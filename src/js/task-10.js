@@ -1,0 +1,62 @@
+function getRandomHexColor() {
+	return `#${Math.floor(Math.random() * 16777215)
+		.toString(16)
+		.padStart(6, 0)}`;
+}
+
+const inputField = document.querySelector("#controls input");
+const createBtn = document.querySelector("[data-create]");
+const destroyBtn = document.querySelector("[data-destroy]");
+const boxesContainer = document.querySelector("#boxes");
+
+function createBoxes(amount) {
+	let boxSize = 30;
+	for (let i = 0; i < amount; i += 1) {
+		const box = document.createElement("div");
+		box.style.width = `${boxSize}px`;
+		box.style.height = `${boxSize}px`;
+		box.style.backgroundColor = getRandomHexColor();
+		boxesContainer.appendChild(box);
+		boxSize += 10;
+	}
+}
+
+function onCreateBtnClick() {
+	const amount = inputField.value;
+	createBoxes(amount);
+}
+
+function onDestroyBtnClick() {
+	boxesContainer.innerHTML = "";
+}
+
+createBtn.addEventListener("click", onCreateBtnClick);
+destroyBtn.addEventListener("click", onDestroyBtnClick);
+
+/*
+Zadanie 10 (nieobowiązkowe)
+Napisz skrypt tworzenia i usuwania kolekcji elementów. Użytkownik wprowadza liczbę elementów do input i naciska przycisk Utwórz, co rozpoczyna tworzenie się kolekcji. Po naciśnięciu przycisku Usuń, kolekcja elementów zostaje usunięta.
+
+<div id="controls">
+  <input type="number" min="1" max="100" step="1" />
+  <button type="button" data-create>Create</button>
+  <button type="button" data-destroy>Destroy</button>
+</div>
+
+<div id="boxes"></div>
+
+
+Utwórz funkcję createBoxes(amount), która przyjmuje jeden parametr - liczbę. Funkcja tworzy tyle elementów <div>, ile wybrano w amount i dodaje je do div#boxes.
+
+Wymiary pierwszego <div> - 30px na 30px.
+Każdy następny element powinien być szerszy i wyższy od poprzedniego o 10px.
+Wszystkie elementy powinny mieć losowy kolor tła w formacie NEX. Użyj gotowej funkcji getRandomHexColor aby otrzymać kolor.
+function getRandomHexColor() {
+  return `#${Math.floor(Math.random() * 16777215)
+    .toString(16)
+    .padStart(6, 0)}`;
+}
+
+
+Utwórz funkcję destroyBoxes(), która usuwa zawartość div#boxes, tym samym usuwając wszystkie utworzone elementy.
+*/
