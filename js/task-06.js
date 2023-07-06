@@ -1,15 +1,14 @@
-classList add & remove
+const textInput = document.querySelector("#validation-input");
 const onBlur = () => {
-  if (textInput.value.length === parseInt(textInput.dataset.length)) {
-    textInput.classList.remove("invalid");
-    textInput.classList.add("valid");
-  } else {
-    textInput.classList.remove("valid");
-    textInput.classList.add("invalid");
-  }
+	if (textInput.value.length === parseInt(textInput.dataset.length)) {
+		textInput.classList.remove("invalid");
+		textInput.classList.add("valid");
+	} else {
+		textInput.classList.remove("valid");
+		textInput.classList.add("invalid");
+	}
 };
 textInput.addEventListener("blur", onBlur);
-
 
 /*
 Zadanie 6
